@@ -1,5 +1,3 @@
-import { useAuth0 } from "@auth0/auth0-react";
-import { Navigate } from "@tanstack/react-location";
 import { toast } from "react-toastify";
 import illustrationSrc from "../assets/illustration-login.png";
 import logoSrc from "../assets/logo.png";
@@ -14,21 +12,6 @@ if (searchParams.has("error_description")) {
 }
 
 function Login() {
-  const { loginWithRedirect, isAuthenticated } = useAuth0();
-
-  const handleSignIn = () => {
-    loginWithRedirect({
-      redirectUri:
-        import.meta.env.MODE === "development"
-          ? "http://localhost:3000"
-          : undefined,
-    });
-  };
-
-  if (isAuthenticated) {
-    return <Navigate to={"/"} replace />;
-  }
-
   return (
     <div className="h-screen">
       <div className="flex">
@@ -44,8 +27,8 @@ function Login() {
           </div>
           <div>
             <button
-              onClick={handleSignIn}
-              className="btn btn-primary btn-wide capitalize"
+              // onClick={handleSignIn}
+              className="btn-primary btn-wide btn capitalize"
             >
               <span className="text-white">Sign In</span>
             </button>
